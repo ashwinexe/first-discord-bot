@@ -254,9 +254,33 @@ async def on_message(message):
             await message.add_reaction(custom_map["blahajcry"])
             times["last_cry_time"] = time.time()
 
-    #scream for everyone for INIT
+    #scream for INIT
     if "init" in string or "scream" in string:
         await message.reply("https://tenor.com/view/jonah-hill-shriek-excited-scream-shout-gif-4705306")
+        
+    #gift blahaj for good work or anyway coz why not
+    if message.content.startswith("gift"):
+        mention = string.split('gift')
+        myid = message.author.id #bug -> this line gets your id, we want it to get the mentioned person's id 
+        # res = mention[1].strip('<')
+        # res = res.strip('>')
+        # res = res.strip('@')
+        # res = res.strip('!')
+        res = re.split("[!<>@]", mention[1])
+        reason = re.split("[!<>@\d+]", mention[1])
+        res = res[3]
+        reason = list(filter(None, reason))
+        # print(reason)
+        if not mention[1]:
+            await message.reply("whom should I send a gift?")
+        elif int(res) == myid:
+            await message.reply("Ha! you can't gift yourself.")
+        else:
+            await message.reply("{} Here's a plushie for you:\n".format(mention[1]), file=discord.File('giftBlahaj.png') )
+            # print(mention[1])
+            # print(type(myid))
+            # print(message.author.id)
+            # print(type(res))
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
