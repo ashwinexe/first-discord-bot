@@ -254,5 +254,9 @@ async def on_message(message):
             await message.add_reaction(custom_map["blahajcry"])
             times["last_cry_time"] = time.time()
 
+    #scream for everyone for INIT
+    if "scream" in string:
+        await message.reply("https://tenor.com/view/jonah-hill-shriek-excited-scream-shout-gif-4705306")
+
 keep_alive()
 client.run(os.getenv('TOKEN'))
