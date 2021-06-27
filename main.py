@@ -1,10 +1,11 @@
 import discord
 import os
+from dotenv import load_dotenv
 from keep_alive import keep_alive
 import re
 import time
 import requests
-
+load_dotenv()
 # from dotenv import load_dotenv
 # load_dotenv('---.env')
 # emoji info https://gist.github.com/scragly/b8d20aece2d058c8c601b44a689a47a0
@@ -190,6 +191,11 @@ async def on_message(message):
     if "tiff" in string:
         # await message.reply(nqn_msg.format("3c"))
         await message.add_reaction(custom_map["royalblahaj"])
+
+    if "ash" in string:
+        await message.add_reaction(default_map["regional_indicator_a"])
+        await message.add_reaction(default_map["regional_indicator_s"])
+        await message.add_reaction(default_map["regional_indicator_h"])
 
     #per mara's request
     if "mara" in string:
